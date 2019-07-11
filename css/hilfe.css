@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css?family=Asap:400,500,700');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  max-width:100%;
+  max-height:100%;
+  font-family: Asap, sans-serif;
+
+}
+
+/*---*/
+/* Zentriert den äußeren div der Form auf der Seite */
+/*---*/
+.mainbox{
+  margin-top: 30px;
+  background-color: #f7f9f9;
+  border: 5px;
+  border-color: 000;
+}
+.suchformular{
+  text-align: center;
+  margin: 20px;
+
+
+}
+.box{
+  display: inline-block;
+  margin: 0px 10px 30px 10px;
+}
+.input-text{
+  font-size: 16px;
+  height: 50px;
+  width: 500px;
+  background: #eeffff;
+  border-radius: 6px;
+  border-color: #008744;
+  font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+  color: black;
+  font-size: 14px;
+
+}
+.button{
+  font-size: 16px;
+  height: 50px;
+  width: 100px;
+  background: #b4f391;
+  border-radius: 6px;
+  background-color: #008744; /* Blue background */
+  font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+  color: white;
+
+}
+
+h1 {
+  padding-top: 100px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+label {
+  font-size: 14px;
+  color: #9a9a9a;
+}
+
+.but{
+  margin-top: 0px;
+  background-color: #f7f9f9;
+  text-align: center;
+  height: 75px;
+  position: relative;
+  border: 1px solid black;
+}
+.mainfooter{
+
+  margin-top: 49%;
+  background-color: #f7f9f9;
+  text-align: center;
+  height: 100px;
+  position: relative;
+  border: 1px solid black;
+  padding-top: 10px;
+
+}
+.footer{
+  display: inline-block;
+  margin: 20px;
+  width: 200px;
+  height: 50px;
+  padding-top: 12px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 20px;
+  border: 1px solid #008744;
+  background: #eeffff;
+  border-radius: 4px;
+
+}
+.buttonHome{
+  float: left;
+  width: 200px;
+  height: 73px;
+  background: #b4f391;
+  background-color: #008744; /* Blue background */
+  border:1px;
+  border-color: #eee;
+  border-radius: 4px;
+  font-size: 20px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+  color: white;
+  margin-top: 0px;
+}
+.map{
+  margin: auto;
+  width: 30%;
+  border: 3px solid #008744;
+  border-radius: 4px;
+  padding: 10px;
+
+}

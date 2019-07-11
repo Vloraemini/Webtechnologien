@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Vergleichen und mieten</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+  <script language="javascript" type="text/javascript" src="js/app.js"></script>
+
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="Dein Autovermieter, ist eine Plattform auf dem du die Autos nach Bedürfnissen filtern und mieten kannst">
+  <meta property="og:title" content="Dein Autovermieter, der Autovermieter für alle Fälle">
+  <meta property="og:type" content="website">
+
+  <script>
+  $(function(){
+    $("#headerDiv").load("html/header.html");
+    $("#footerDiv").load("html/footer.html");
+  });
+
+  </script>
+</head>
+
+<body>
+  <!--Header DIV-->
+  <div id="top">
+    <div id="headerDiv"></div>
+  </div>
+
+  <header class="feature">
+    <div class="container container--wide">
+      <h4 class="feature__title">Autos vergleichen und mieten</h4>
+    </div>
+  </header>
+  <!-- <article>
+
+
+  <div class="container block main" role="main">
+
+
+  <div class="downloads island">
+
+</div>
+</article> -->
+
+
+<div class="main_img" >
+  <div class="centerblock">
+
+    <h2>Finde das Autos für deine Bedürfnissen und miete es!</h2>
+    <p class="complimentary">Günstiger, direkt in deiner Nähe und flexibel.</p>
+    <div class="innerbox">
+
+      <form action="html/AutosVergleichen.html">
+        First name: <input type="text" name="fname" value="John"><br>
+        Last name: <input type="text" name="lname" value="Doe"><br>
+        <input type="submit" value="Submit form">
+      </form>
+
+
+      <br>
+      <label for="ort">In der Nähe von:</label>
+      <br>
+      <form action="html/AutosVergleichen.html">
+        <input class='input-text' type='text' value="" placeholder='Genaue Adresse, Bahnhof, U-Bahn ...'>
+        <br>
+        <br>
+        <!-- <label for="start">Startdatum:</label> -->
+        <input type="date" id="start" name="trip-start" value="2019-05-08" min="2019-01-01" max="2019-12-31">
+
+        <!-- <label for="end">Enddatum:</label> -->
+        <input type="date" id="end" name="trip-end" value="2019-05-08" min="2019-01-01" max="2019-12-31">
+        <br>
+        <div class='box'>
+          <input type="submit" class="fa fa-search" aria-hidden="true" value="Suchen">
+          <!-- <input type="submit" class="fa fa-search" aria-hidden="true" value="Suchen" onclick="dosomething(this)"> Test -->
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--Footer DIV-->
+<div id="bottom">
+  <div id="footerDiv"></div>
+</div>
+
+</body>
+</html>

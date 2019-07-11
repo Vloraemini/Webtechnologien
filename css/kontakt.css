@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css?family=Asap:400,500,700');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Asap, sans-serif;
+}
+
+/*---*/
+/* Zentriert den äußeren div der Form auf der Seite */
+/*---*/
+.mainbox{
+  margin: 30px;
+  background-color: #f7f9f9;
+  border: 5px;
+  border-color: 000;
+}
+.konktaktformular {
+    width: 50%;
+    margin: auto;
+    margin-top: 20px;
+}
+.but{
+  margin-top: 0px;
+  background-color: #f7f9f9;
+  text-align: center;
+  height: 75px;
+  position: relative;
+  border: 1px solid black;
+}
+.mainfooter{
+
+  margin-top: 49%;
+  background-color: #f7f9f9;
+  text-align: center;
+  height: 100px;
+  position: relative;
+  border: 1px solid black;
+  padding-top: 10px;
+
+}
+.footer{
+  display: inline-block;
+  margin: 20px;
+  width: 200px;
+  height: 50px;
+  padding-top: 12px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 20px;
+  border: 1px solid #008744;
+  background: #eeffff;
+  border-radius: 4px;
+
+}
+.buttonHome{
+  float: left;
+  width: 200px;
+  height: 73px;
+  background: #b4f391;
+  background-color: #008744; /* Blue background */
+  border:1px;
+  border-color: #eee;
+  border-radius: 4px;
+  font-size: 20px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+  color: white;
+  margin-top: 0px;
+}
+
+select, textarea, input[type="text"], input[type=email] {
+  height: 50px;
+  width: 500px;
+  background: #eeffff;
+  border-radius: 4px;
+  border-color: #008744;
+  font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+  color: white;
+  font-size: 14px;
+
+}
+h1 {
+  padding-top: 100px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+p{
+  font-family: Asap, sans-serif;
+  font-size: 20px;
+}
+
+label, select, textarea, input[type="text"], input[type="email"] {
+width: 100%;
+}
+
+.button{
+  float: right;
+  width: 20%;
+  height: 40px;
+  background: #b4f391;
+  background-color: #008744; /* Blue background */
+  border-color: #eee;
+  border-radius: 4px;
+  font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+  color: white;
+
+}
+/* Darker background on mouse-over */
+.button:hover {
+  background-color: #74d600;
+}
+
+a {
+    color: black;
+    font-size: 16px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+    text-decoration: none;
+}
+
+textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.map{
+  margin-top: 100px;
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="../css/kontakt.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script>
+  $(function(){
+    $("#headerDiv").load("header0.html");
+    $("#footerDiv").load("footer0.html");
+  });
+
+  </script>
+</head>
+<body>
+
+  <div id="top">
+    <div id="headerDiv"></div>
+  </div>
+
+
+  <div class="mainbox" >
+    <div class="konktaktformular">
+
+      <h1>Wir sind für Sie da. Nehmen Sie mit uns Kontakt auf.</h1>
+
+      <div class='block'>
+        <p>Vorname</p>
+        <input class='input-text' type='text' placeholder='Vorname'>
+      </div>
+
+      <div class='block'>
+        <p>Nachname</p>
+        <input class='input-text' type='text' placeholder='Nachname'>
+      </div>
+
+      <div class='block'>
+        <p>E-Mail</p>
+        <input class='input-text' type='email' placeholder='E-Mail'>
+      </div>
+
+      <div class="block">
+        <p>Nachricht</p>
+        <textarea class='input-textarea' type='textarea' placeholder='Ihre Nachricht'></textarea>
+      </div>
+
+      <div class='block'>
+        <button class="button">Senden</button>
+        <!-- <input style="height: 70px; width: 100px;" type="submit" value="Senden" /> -->
+      </div>
+
+      <div class="map">
+        <p>Wir befinden uns hier!</p>
+        <iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=Berlin%20&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div id="bottom">
+    <div id="footerDiv"></div>
+  </div>
+</body>
+</html>

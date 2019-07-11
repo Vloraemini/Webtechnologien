@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Hilfe</title>
+    <link rel="stylesheet" href="../css/hilfe.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script>
+      $(function(){
+        $("#headerDiv").load("header0.html");
+        $("#footerDiv").load("footer0.html");
+      });
+
+    </script>
+  </head>
+  <body>
+
+    <div id="top">
+      <div id="headerDiv"></div>
+    </div>
+
+
+    <div class="mainbox" >
+      <div class="konktaktformular">
+
+    <div class="mainbox">
+      <h1>Wie können wir dir helfen?</h1>
+
+      <div class="suchformular">
+        <div class='box'>
+          <input class='input-text' type='text' placeholder='Suchbegriff eingeben'>
+        </div>
+        <div class='box'>
+          <button class="button"><i class="fa fa-search" aria-hidden="true"></i> Suche</button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="map">
+      <p>Wir befinden uns hier!</p>
+      <iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=Berlin%20&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+    </div>
+    <div id="bottom">
+      <div id="footerDiv"></div>
+    </div>
+
+  </body>
+</html>
