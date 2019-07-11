@@ -258,6 +258,6 @@ function createNameForFile(modell){
   return filename;
 }
 function filterSelection(filterValue){
-
+  console.log("Das ist die Ausgabe:");
   console.log(filterValue);
 }
