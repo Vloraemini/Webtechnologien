@@ -548,3 +548,7 @@ body {
 .headroom--unpinned {
   transform: translateY(-100%)
 }
+#cityInput{
+  height: 30px;
+  width: 150px;
+}

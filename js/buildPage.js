@@ -22,9 +22,18 @@ window.onload = function buidPage(){
 
 
   buildDivHeader();
-  var carList = buildCars();
+
 
   buildDivInPage(carList);
+
+  var buttonPriceInContainer = document.getElementById('buttonPriceInContainer');
+  buttonPriceInContainer.setAttribute('onclick','filterPrice()');
+  var buttonCityInContainer = document.getElementById('buttonPriceInContainer');
+  buttonCityInContainer.setAttribute('onclick','filterCity()');
+
+  var buttonResetInContainer = document.getElementById('buttonResetInContainer');
+  buttonResetInContainer.setAttribute('onclick','filterReset()');
+
 }
 
 
@@ -33,17 +42,14 @@ function buildDivInPage(carList){
 
   for (var i = 0; i < carList.length; i++) {
     var auto = carList[i];
-
-
-    if((ortValue!= null || ortValue!="")){
+    if(ortValue === undefined || ortValue.length === 0){
+      createDivElements(auto, "");
+    }else{
       if(ortValue != auto.ort){
         continue;
       }else {
         createDivElements(auto, ortValue);
       }
-
-    }else{
-      createDivElements(auto, '');
     }
   }
 }
@@ -106,11 +112,11 @@ function createDivElements(car, city){
   var carCityDiv = document.createElement('div');
   carCityDiv.className = 'carType';
   carCityDiv.id = "cityID"+i;
-  console.log("City: "+city);
-  if(city!=null&&city != ""){
-    carCityDiv.innerHTML = city;
-  }else {
+
+  if(city.length === 0){
     carCityDiv.innerHTML = car.ort;
+  }else{
+    carCityDiv.innerHTML = city;
   }
 
   formDiv.appendChild(carCityDiv);
@@ -194,48 +200,74 @@ function buildDivHeader(){
 function addFilterElementsToPage(){
   var centerblockDiv = document.getElementById('centerblock');
   var buttonContainerDiv = document.createElement('div');
-  buttonContainerDiv.setAttribute('id','buttonContainer');
+  buttonContainerDiv.setAttribute('id','filterContainer');
 
-  var filterCityDiv = document.createElement('button');
-  filterCityDiv.setAttribute('class','button active');
-  filterCityDiv.setAttribute('id','buttonContainer');
-  filterCityDiv.setAttribute('value','Test');
-  var filterValue="Berlin";
-  filterCityDiv.innerHTML="Standort";
-  filterCityDiv.onclick = function() { filterSelection(filterValue); };
+  var labelContainerDiv =  document.createElement('p');
+  labelContainerDiv.innerHTML ="Nach Preis filtern: ";
 
-  // filterCityDiv.setAttribute('onclick',"filterSelection("+filterValue + ")");
+  var inputContainerDiv = document.createElement('input');
 
-  buttonContainerDiv.appendChild(filterCityDiv);
+  inputContainerDiv.id='priceInput';
+  inputContainerDiv.type='number';
+  inputContainerDiv.value ='50';
+  inputContainerDiv.min ='50';
+  inputContainerDiv.max ='150';
+
+  var buttonPriceDiv = document.createElement('button');
+  buttonPriceDiv.setAttribute('class','button active');
+  buttonPriceDiv.setAttribute('id','buttonPriceInContainer');
+  buttonPriceDiv.setAttribute('value','Test');
+
+  buttonPriceDiv.innerHTML="Preis filtern";
+
+  labelContainerDiv.appendChild(inputContainerDiv);
+  labelContainerDiv.appendChild(buttonPriceDiv);
+//----
+  var labelCityContainerDiv =  document.createElement('p');
+  labelCityContainerDiv.innerHTML ="Nach Ort filtern: ";
+
+  var inputCityContainerDiv = document.createElement('input');
+  inputCityContainerDiv.class='cityInput';
+  inputCityContainerDiv.id='cityInput';
+  inputCityContainerDiv.type = 'text';
+
+  var buttonCityDiv = document.createElement('button');
+  buttonCityDiv.setAttribute('class','button active');
+  buttonCityDiv.setAttribute('id','buttonCityInContainer');
+  buttonCityDiv.setAttribute('value','Test');
+
+  buttonCityDiv.innerHTML="Ort filtern";
+
+  labelCityContainerDiv.appendChild(inputCityContainerDiv);
+  labelCityContainerDiv.appendChild(buttonCityDiv);
+//-------------
+  var labelResetContainerDiv =  document.createElement('p');
+  labelResetContainerDiv.innerHTML ="Filter zurücksetzen:";
+
+  var buttonResetDiv = document.createElement('button');
+  buttonResetDiv.setAttribute('class','button active');
+  buttonResetDiv.setAttribute('id','buttonResetInContainer');
+  buttonResetDiv.innerHTML="Reset";
+
+  labelResetContainerDiv.appendChild(buttonResetDiv);
+
+  buttonContainerDiv.appendChild(labelContainerDiv);
+  buttonContainerDiv.appendChild(labelCityContainerDiv);
+  buttonContainerDiv.appendChild(labelResetContainerDiv);
+
   centerblockDiv.appendChild(buttonContainerDiv);
-  // carButtonDiv.onclick='"filterSelection('all')"';
-  //
-  // var buttonnode= document.createElement('input');
-  // buttonnode.setAttribute('type','button');
-  // buttonnode.setAttribute('name','sal');
-  // buttonnode.setAttribute('value','sal');
-  //
-  // carDiv.appendChild(carButtonDiv);
-  //
-  // carDiv.appendChild(carCityDiv);
-  // <div id="myBtnContainer">
-  // <button class="btn active" onclick="filterSelection('all')"> Show all</button>
-  // <button class="btn" onclick="filterSelection('cars')"> Cars</button>
-  // <button class="btn" onclick="filterSelection('animals')"> Animals</button>
-  // <button class="btn" onclick="filterSelection('fruits')"> Fruits</button>
-  // <button class="btn" onclick="filterSelection('colors')"> Colors</button>
-  // </div>
 
 }
 
 var city = ["Berlin","Hamburg","München","Köln","Frankfurt am Main","Stuttgart","Düsseldorf","Dortmund","Essen","Bremen","Dresden","Leipzig"];
 var ortValue = getUrlVars()["ort"];
 // Liste der Automodelle
-var cars = ["Mazda CX 3", "Mazda CX 5", "Smart fortwo", "Smart for four",
-"Bmw i3", "Bmw X 3", "Audi A1", "Audi Q2", "Nissan Qashqai",
+var cars = ["Mazda CX 3", "Mazda CX 5", "Smart for 2", "Smart for 4",
+"Bmw i3", "Bmw X3", "Audi A1", "Audi Q2", "Nissan Qashqai",
 "Peugeot 108", "Seat Leon","VW-Tiguan", "Ford Kuga",
 "Kia Niro", "Kia Rio" ];
 
+var carList = buildCars();
 
 function buildCars(standort){
 
@@ -287,4 +319,56 @@ function getUrlVars() {
     vars[key] = value;
   });
   return vars;
+}
+
+function filterPrice(){
+  clearpage();
+
+  var newCarList = new Array();
+  var filterprice = document.getElementById("priceInput").value;
+  console.log("erste Liste: "+carList.length);
+  for (var i = 0; i < carList.length; i++) {
+    var car = carList[i];
+    console.log(car);
+    if(car.preis <= filterprice){
+      newCarList.push(car);
+    }
+  }
+  console.log("Neue Liste:"+newCarList.length);
+  buildDivInPage(newCarList);
+
+}
+
+function filterCity(){
+  clearpage();
+
+  var newCarList = new Array();
+  var filterCity = document.getElementById("cityInput").value;
+
+  for (var i = 0; i < carList.length; i++) {
+    var car = carList[i];
+    if(car.ort === filterCity){
+      newCarList.push(car);
+    }
+  }
+  console.log("Neue Liste:"+newCarList.length);
+  buildDivInPage(newCarList);
+
+}
+
+function filterReset(){
+  clearpage();
+
+  buildDivInPage(carList);
+
+}
+
+function clearpage(){
+
+  var list = document.getElementById("carsList");
+   while (list.hasChildNodes()) {
+      list.removeChild(list.firstChild);
+   }
+   console.log("Clear ist fertig");
+
 }
