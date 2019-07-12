@@ -28,7 +28,7 @@ window.onload = function buidPage(){
 
   var buttonPriceInContainer = document.getElementById('buttonPriceInContainer');
   buttonPriceInContainer.setAttribute('onclick','filterPrice()');
-  var buttonCityInContainer = document.getElementById('buttonPriceInContainer');
+  var buttonCityInContainer = document.getElementById('buttonCityInContainer');
   buttonCityInContainer.setAttribute('onclick','filterCity()');
 
   var buttonResetInContainer = document.getElementById('buttonResetInContainer');
