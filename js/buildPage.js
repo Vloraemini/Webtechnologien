@@ -2,7 +2,8 @@ window.onload = function buidPage(){
   var iDiv = document.createElement('div');
   iDiv.id = 'main_img';
   iDiv.className = 'main_img autoHoehe repeat';
-  document.getElementsByTagName('body')[0].appendChild(iDiv);
+  var main = document.getElementById('main');
+  main.appendChild(iDiv);
 
   // Create Centerblock and append to iDiv
   var innerDiv = document.createElement('div');
@@ -22,141 +23,124 @@ window.onload = function buidPage(){
 
   buildDivHeader();
   var carList = buildCars();
-  // for (var i = 0; i < carList.length; i++) {
-  //   var auto = carList[i];
-  //   if (myVar != null) {...}
-  // }
+
   buildDivInPage(carList);
 }
 
 
-var city = ["Berlin","Hamburg","München","Köln","Frankfurt am Main","Stuttgart","Düsseldorf","Dortmund","Essen","Bremen","Dresden","Leipzig"];
-
-// Liste der Automodelle
-var cars = ["Mazda CX 3", "Mazda CX 5", "Smart fortwo", "Smart for four",
-"Bmw i3", "Bmw X 3", "Audi A1", "Audi Q2", "Nissan Qashqai",
-"Peugeot 108", "Seat Leon","VW-Tiguan", "Ford Kuga",
-"Kia Niro", "Kia Rio" ];
-
-// // Liste der Automodelle für die ein Bild existiert
-// var carsFilename = ["mazda_cx_3", "mazda_cx_5", "smart_for_two", "Smart_for_four",
-// "bmw_i3", "bmw_x3", "audi_a1", "audi_q2", "nissan_qashqai",
-// "peugeot_108", "seat_leon","vw_tiguan", "ford_kuga",
-// "kia_niro", "kia_rio" ];
-
-function buildCars(standort){
-
-  var autoListe = new Array();
-  var anzahlAutos = cars.length;
-  for (var i = 0; i < anzahlAutos; i++) {
-    var preis = Math.floor(Math.random() * 100)+50;
-    var sitze = Math.floor(Math.random() * 3)+2;
-    // var modellIndex = Math.floor(Math.random() * cars.length);
-
-    var modell= cars[i];
-    var kraftstoff = (Math.floor(Math.random()*i) % 2 == 0)? "Benzin": "Diesel";
-    var ort= city[Math.floor(Math.random() * city.length)];
-    var auto = new Auto(modell,preis,kraftstoff,sitze,ort);
-    // console.log(auto.toString());
-    // console.log(auto.preis);
-    autoListe.push(auto);
-  }
-  return autoListe;
-
-}
 
 function buildDivInPage(carList){
-  var carsListDiv = document.getElementById('carsList');
+
   for (var i = 0; i < carList.length; i++) {
     var auto = carList[i];
-    // console.log(auto.modell);
-    var filename = createNameForFile(auto.modell);
-    console.log(filename);
-    // Create auto and append to iDiv
-    var carDiv = document.createElement('div');
-    carDiv.className = 'car';
-    carDiv.id = "car"+i;
 
-    var formDiv = document.createElement('form');
-    formDiv.action ='AutoVorlage.html';
 
-    // Load Picture from Folder
-    var img=document.createElement("img");
-    img.src="../images/"+ filename +"_298x199.jpg";
-    img.id="picture"+i;
-    img.className="picture";
-    img.width=75;
-    img.height=50;
+    if((ortValue!= null || ortValue!="")){
+      if(ortValue != auto.ort){
+        continue;
+      }else {
+        createDivElements(auto, ortValue);
+      }
 
-    // Create Div for picture
-    var carPicDiv = document.createElement('div');
-    carPicDiv.className = 'carType';
-    carPicDiv.appendChild(img);
-    formDiv.appendChild(carPicDiv);
-
-    // Create Div for Modell
-    var carModellDiv = document.createElement('div');
-    carModellDiv.className = 'carType';
-    carModellDiv.id = "modellID"+i;
-    carModellDiv.innerHTML = auto.modell;
-    formDiv.appendChild(carModellDiv);
-
-    // Create Div for Price
-    var carPriceDiv = document.createElement('div');
-    carPriceDiv.className = 'carType';
-    carPriceDiv.id = "priceID"+i;
-    carPriceDiv.innerHTML = auto.preis+" €/Tag";
-    formDiv.appendChild(carPriceDiv);
-
-    // Create Div for Fuel
-    var carFuelDiv = document.createElement('div');
-    carFuelDiv.className = 'carType';
-    carFuelDiv.id = "fuelID"+i;
-    carFuelDiv.innerHTML = auto.kraftstoff;
-    formDiv.appendChild(carFuelDiv);
-
-    // Create Div for Seats
-    var carSeatsDiv = document.createElement('div');
-    carSeatsDiv.className = 'carType';
-    carSeatsDiv.id = "seatID"+i;
-    carSeatsDiv.innerHTML = auto.sitzeplatze;
-    formDiv.appendChild(carSeatsDiv);
-
-    // Create Div for Seats
-    var carCityDiv = document.createElement('div');
-    carCityDiv.className = 'carType';
-    carCityDiv.id = "cityID"+i;
-    carCityDiv.innerHTML = auto.ort;
-    formDiv.appendChild(carCityDiv);
-
-    var carButtonDiv = document.createElement('button');
-    carButtonDiv.className = 'carType auswahlButton';
-    var id = "submitID"+i;
-    carButtonDiv.id = id;
-    carButtonDiv.setAttribute('onclick','foo(id)');
-    carButtonDiv.innerHTML ="Auswählen" ;
-
-    formDiv.appendChild(carButtonDiv);
-
-    carDiv.appendChild(formDiv);
-    // carDiv.appendChild(carButtonDiv);
-
-    carsListDiv.appendChild(carDiv);
+    }else{
+      createDivElements(auto, '');
+    }
   }
 }
 
-var foo = function(id){
-  console.log(id);
-  // var button = document.createElement('button');
-  // button.innerHTML = 'click me';
-  // button.onclick = function(){
-  //   alert('here be dragons');return false;
-  // };
-  // // where do we want to have the button to appear?
-  // // you can append it to another element just by doing something like
-  // // document.getElementById('foobutton').appendChild(button);
-  // document.body.appendChild(button);
-};
+function createDivElements(car, city){
+  var carsListDiv = document.getElementById('carsList');
+  var filename = createNameForFile(car.modell);
+
+  // Create auto and append to iDiv
+  var carDiv = document.createElement('div');
+  carDiv.className = 'car';
+  carDiv.id = "car"+i;
+
+  var formDiv = document.createElement('form');
+  formDiv.action ='AutoVorlage.html';
+
+  // Load Picture from Folder
+  var img=document.createElement("img");
+  img.src="../images/"+ filename +"_298x199.jpg";
+  img.id="picture"+i;
+  img.className="picture";
+  img.width=75;
+  img.height=50;
+
+  // Create Div for picture
+  var carPicDiv = document.createElement('div');
+  carPicDiv.className = 'carType';
+  carPicDiv.appendChild(img);
+  formDiv.appendChild(carPicDiv);
+
+  // Create Div for Modell
+  var carModellDiv = document.createElement('div');
+  carModellDiv.className = 'carType';
+  carModellDiv.id = "modellID"+i;
+  carModellDiv.innerHTML = car.modell;
+  formDiv.appendChild(carModellDiv);
+
+  // Create Div for Price
+  var carPriceDiv = document.createElement('div');
+  carPriceDiv.className = 'carType';
+  carPriceDiv.id = "priceID"+i;
+  carPriceDiv.innerHTML = car.preis+" €/Tag";
+  formDiv.appendChild(carPriceDiv);
+
+  // Create Div for Fuel
+  var carFuelDiv = document.createElement('div');
+  carFuelDiv.className = 'carType';
+  carFuelDiv.id = "fuelID"+i;
+  carFuelDiv.innerHTML = car.kraftstoff;
+  formDiv.appendChild(carFuelDiv);
+
+  // Create Div for Seats
+  var carSeatsDiv = document.createElement('div');
+  carSeatsDiv.className = 'carType';
+  carSeatsDiv.id = "seatID"+i;
+  carSeatsDiv.innerHTML = car.sitzeplatze;
+  formDiv.appendChild(carSeatsDiv);
+
+  // Create Div for Seats
+  var carCityDiv = document.createElement('div');
+  carCityDiv.className = 'carType';
+  carCityDiv.id = "cityID"+i;
+  console.log("City: "+city);
+  if(city!=null&&city != ""){
+    carCityDiv.innerHTML = city;
+  }else {
+    carCityDiv.innerHTML = car.ort;
+  }
+
+  formDiv.appendChild(carCityDiv);
+
+  // <input type="hidden" id="custId" name="custId" value="3487">
+  var inputHideDiv = document.createElement('input');
+  inputHideDiv.setAttribute('type','hidden');
+  inputHideDiv.setAttribute('id','Test');
+  inputHideDiv.setAttribute('name','auto');
+  var data = getCarData(car);
+  inputHideDiv.setAttribute('value',data);
+  formDiv.appendChild(inputHideDiv);
+  var carButtonDiv = document.createElement('input');
+  // carButtonDiv.className = 'carType auswahlButton';
+
+
+  carButtonDiv.setAttribute('type','submit');
+  // carButtonDiv.setAttribute('name','carCityDiv.id');
+  carButtonDiv.setAttribute('value','Auswählen');
+
+  // carButtonDiv.setAttribute('onclick','foo(name)');
+  // carButtonDiv.innerHTML ="Auswählen" ;
+
+  formDiv.appendChild(carButtonDiv);
+
+  carDiv.appendChild(formDiv);
+  // carDiv.appendChild(carButtonDiv);
+
+  carsListDiv.appendChild(carDiv);
+}
 
 
 function buildDivHeader(){
@@ -243,6 +227,41 @@ function addFilterElementsToPage(){
   // </div>
 
 }
+
+var city = ["Berlin","Hamburg","München","Köln","Frankfurt am Main","Stuttgart","Düsseldorf","Dortmund","Essen","Bremen","Dresden","Leipzig"];
+var ortValue = getUrlVars()["ort"];
+// Liste der Automodelle
+var cars = ["Mazda CX 3", "Mazda CX 5", "Smart fortwo", "Smart for four",
+"Bmw i3", "Bmw X 3", "Audi A1", "Audi Q2", "Nissan Qashqai",
+"Peugeot 108", "Seat Leon","VW-Tiguan", "Ford Kuga",
+"Kia Niro", "Kia Rio" ];
+
+
+function buildCars(standort){
+
+  var autoListe = new Array();
+  var anzahlAutos = 30;
+  for (var i = 0; i < anzahlAutos; i++) {
+    var preis = Math.floor(Math.random() * 100)+50;
+    var sitze = Math.floor(Math.random() * 3)+2;
+    var modell= cars[Math.floor(Math.random() * cars.length)];
+    var kraftstoff = (Math.floor(Math.random()*i) % 2 == 0)? "Benzin": "Diesel";
+
+    var ort =city[Math.floor(Math.random() * city.length)];
+
+    var auto = new Auto(modell,preis,kraftstoff,sitze,ort);
+    autoListe.push(auto);
+  }
+  return autoListe;
+
+}
+
+function getCarData(car){
+  // var name = createNameForFile(car.modell);
+  var carData = car.modell+"_"+car.preis+"_"+car.kraftstoff+"_"+car.sitzeplatze+"_"+car.ort;
+  return carData;
+}
+
 function createNameForFile(modell){
   modell = modell.toLowerCase();
   var words = modell.split(' ');
@@ -260,4 +279,12 @@ function createNameForFile(modell){
 function filterSelection(filterValue){
   console.log("Das ist die Ausgabe:");
   console.log(filterValue);
+}
+
+function getUrlVars() {
+  var vars = {};
+  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+    vars[key] = value;
+  });
+  return vars;
 }
